@@ -1,0 +1,29 @@
+﻿@model CategoryVM
+@{
+    ViewBag.Title = "AddCategory";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="card-body">
+    @using (Html.BeginForm("AddCategory","Category", FormMethod.Post))
+    {
+        <div>
+            <label>CategoryName</label>
+            @Html.TextBoxFor(x => x.CategoryName, new { @class = "form-control" })
+
+        </div>
+        <br />
+        <div>
+            <label>Description</label>
+            @Html.TextBoxFor(x => x.Description, new { @class = "form-control" })
+
+        </div>
+
+        <br />
+        <button type="submit" class="btn btn-danger">AddCategory</button>
+        
+    }
+
+</div>
+
