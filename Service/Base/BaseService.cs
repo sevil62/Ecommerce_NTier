@@ -17,10 +17,19 @@ namespace Service.Base
 
         public string Add(T model)
         {
-           context.Set<T>().Add(model);
-            return "model eklendi";
-        }
 
+            try
+            {
+                model.ID = Guid.NewGuid();
+                context.Set<T>().Add(model);
+                context.SaveChanges();
+                return "veri eklendi!";
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
+            }
+        }
         public string Add(List<T> models)
         {
             context.Set<T>().AddRange(models);
@@ -83,8 +92,9 @@ namespace Service.Base
 
             try
             {
+                model.ID = Guid.NewGuid();
                 T updated = GetById(model.ID);
-                context.Entry(updated).State = System.Data.Entity.EntityState.Modified;
+                context.Entry(updated).CurrentValues.SetValues(updated);
                 context.SaveChanges();
                 return $"{model.ID} nolu veri güncellendi";
             }
@@ -93,5 +103,6 @@ namespace Service.Base
                 return ex.Message;
             }
         }
+       
     }
 }

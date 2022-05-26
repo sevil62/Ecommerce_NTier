@@ -1,0 +1,34 @@
+﻿@model DAL.Entity.Supplier
+@{
+    ViewBag.Title = "CreateSupplier";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="card-body">
+    @using (Html.BeginForm("CreateSupplier","Supplier", FormMethod.Post))
+    {
+        <div>
+            <label>CompanyName</label>
+            @Html.TextBoxFor(x => x.CompanyName, new { @class = "form-control" })
+
+        </div>
+        <br />
+        <div>
+            <label>Address</label>
+            @Html.TextBoxFor(x => x.Address, new { @class = "form-control" })
+
+        </div>
+
+        <br />
+        <div>
+            <label>Email</label>
+            @Html.TextBoxFor(x => x.Email, new { @class = "form-control" })
+            <br />
+        </div>
+        <button type="submit" class="btn btn-danger">AddSupplier</button>
+
+    }
+
+</div>
+

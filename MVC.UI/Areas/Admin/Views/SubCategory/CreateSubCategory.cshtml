@@ -1,0 +1,28 @@
+﻿@model DAL.Entity.SubCategory
+@{
+    ViewBag.Title = "CreateSubCategory";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="card-body">
+    @using (Html.BeginForm("CreateSubCategory", "SubCategory", FormMethod.Post))
+    {
+        <div>
+            <label>SubCategoryName</label>
+            @Html.TextBoxFor(x => x.SubCategoryName, new { @class = "form-control" })
+
+        </div>
+        <br />
+        <div>
+            <label>Description</label>
+            @Html.TextBoxFor(x => x.SubDescription, new { @class = "form-control" })
+
+        </div>
+
+        <br />
+        <button type="submit" class="btn btn-danger">AddSubCategory</button>
+
+    }
+
+</div>

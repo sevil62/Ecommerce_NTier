@@ -1,4 +1,6 @@
-﻿using DAL.Entity;
+﻿using DAL.Context;
+using DAL.Entity;
+using DAL.Tools;
 using Service.Base;
 using System;
 using System.Collections.Generic;
@@ -10,5 +12,6 @@ namespace Service.Conc
 {
     public class SupplierService:BaseService<Supplier>
     {
+        
     }
 }

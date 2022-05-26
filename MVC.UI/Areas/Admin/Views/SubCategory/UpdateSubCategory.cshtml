@@ -1,0 +1,28 @@
+﻿@model DAL.Entity.SubCategory
+@{
+    ViewBag.Title = "UpdateSubCategory";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="card-body">
+    @using (Html.BeginForm("UpdateSubCategory", "SubCategory", FormMethod.Post))
+    {
+
+        <div>
+            <label>SubCategoryName</label>
+            @Html.TextBoxFor(x => x.SubCategoryName, new { @class = "form-control" })
+
+        </div>
+        <br />
+        <div>
+            <label>Description</label>
+            @Html.TextBoxFor(x => x.SubDescription, new { @class = "form-control" })
+
+        </div>
+
+        <br />
+
+        <button class="btn btn-warning">Update</button>
+    }
+
+</div>

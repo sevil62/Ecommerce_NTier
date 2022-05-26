@@ -56,12 +56,10 @@
     <Compile Include="Entity\Product.cs" />
     <Compile Include="Entity\SubCategory.cs" />
     <Compile Include="Entity\Supplier.cs" />
-    <Compile Include="Entity\User.cs" />
     <Compile Include="Map\CategoryMap.cs" />
     <Compile Include="Map\ProductMap.cs" />
     <Compile Include="Map\SubCategoryMap.cs" />
     <Compile Include="Map\SupplierMap.cs" />
-    <Compile Include="Map\UserMap.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tools\DbTools.cs" />
