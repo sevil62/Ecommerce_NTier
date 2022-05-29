@@ -1,5 +1,5 @@
 ﻿using DAL.Entity;
-using MVC.UI.Areas.Admin.Models;
+using MVC.UI.CustomFilter;
 using Service.Conc;
 using System;
 using System.Collections.Generic;
@@ -9,6 +9,7 @@ using System.Web.Mvc;
 
 namespace MVC.UI.Areas.Admin.Controllers
 {
+    [AuthAdmin]
     public class CategoryController : Controller
     {
         CategoryService _crep = new CategoryService();
@@ -16,7 +17,7 @@ namespace MVC.UI.Areas.Admin.Controllers
         // GET: Admin/Category
         public ActionResult CategoryList()
         {
-          //_crep.ProductCount(c.CategoryName);
+            ViewBag.CategoryService = _crep;
            
             return View(_crep.GetList());
         }
@@ -28,27 +29,69 @@ namespace MVC.UI.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult CreateCategory(Category category)
         {
-            _crep.Add(category);
-            return RedirectToAction("CategoryList");
-        }
-        public ActionResult UpdateCategory(int? id)
-        {
+            try
+            {
+                string result=_crep.Add(category);
+                TempData["info"] = result;
+                return RedirectToAction("CategoryList");
+
+            }
+            catch (Exception ex)
+            {
+
+                TempData["error"] = ex.Message;
+            }
             return View();
+        }
+        public ActionResult UpdateCategory(Guid id)
+        {
+            try
+            {
+                Category updated = _crep.GetById(id);
+                return View(updated);
+            }
+            catch (Exception ex)
+            {
+
+                TempData["error"]=ex.Message;
+                return View();
+            }
+            
         }
             
 
         [HttpPost]
         public ActionResult UpdateCategory(Category category)
         {
-
-            _crep.Update(category);
-            return RedirectToAction("CategoryList");
+            try
+            {
+                string result=_crep.Update(category);
+                TempData["info"] = result;
+                return RedirectToAction("CategoryList");
+            }
+            catch (Exception ex)
+            {
+                TempData["error"] = ex.Message;
+               
+            }
+            return View();
+          
         }
 
         public ActionResult DeleteCategory(Guid id)
         {
-            _crep.Delete(id);
-            return RedirectToAction("CategoryList");
+            try
+            {
+                string result = _crep.Delete(id);
+                TempData["info"]=result;
+                return RedirectToAction("CategoryList");
+
+            }
+            catch (Exception ex)
+            {
+                TempData["error"] = ex.Message;
+                return View();
+            }
         }
     }
 }

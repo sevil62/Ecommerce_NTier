@@ -4,6 +4,7 @@ using DAL.Context;
 using DAL.Tools;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
@@ -92,9 +93,12 @@ namespace Service.Base
 
             try
             {
-                model.ID = Guid.NewGuid();
                 T updated = GetById(model.ID);
-                context.Entry(updated).CurrentValues.SetValues(updated);
+                //context.Entry(model).State = System.Data.Entity.EntityState.Modified;
+
+                DbEntityEntry entity = context.Entry(updated);
+                entity.CurrentValues.SetValues(model);
+
                 context.SaveChanges();
                 return $"{model.ID} nolu veri güncellendi";
             }
@@ -103,6 +107,11 @@ namespace Service.Base
                 return ex.Message;
             }
         }
-       
+        public T Find(int id)
+        {
+            return context .Set<T>().Find(id);
+        }
     }
+       
+    
 }

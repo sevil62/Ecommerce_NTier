@@ -1,4 +1,4 @@
-﻿@model List<DAL.Entity.Category>
+﻿@model List<Category>
 @{
     ViewBag.Title = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
@@ -6,51 +6,100 @@
 
 <div class="row">
     <div class="col-lg-12">
+        @if (TempData["info"] != null)
+        {
+            <div class="alert alert-success alert-block fade in">
+                <button data-dismiss="alert" class="close close-sm" type="button">
+                    <i class="icon-remove"></i>
+                </button>
+
+                <h4>
+                    <i class="glyphicon-ok-sign"></i>
+                    Başarılı
+                </h4>
+                <p>@TempData["info"]</p>
+            </div>
+        }
+        else if (TempData["error"] != null)
+        {
+            <div class="alert alert-success alert-block fade in">
+                <button data-dismiss="alert" class="close close-sm" type="button">
+                    <i class="icon-remove"></i>
+                </button>
+
+                <h4>
+                    <i class="glyphicon-ok-sign"></i>
+                    Hata
+                </h4>
+                <p>@TempData["error"]</p>
+            </div>
+
+        }
+
         <section class="panel">
-            <div class="col-md-6">
-                <header class="panel-heading">
-                   <button type="submit" class="btn btn-warning">Create Category</button>
-                </header>
-            </div>
-            <div  class="col-md-6">
-                <header class="panel-heading">
-                    Category Table
-                </header>
-            </div>
+            <header class="panel-heading">
+                <div class="row">
+                    <div class="col-md-9">
+                        <h2>Kategori Listesi</h2>
+                    </div>
+                    <div class="col-md-3 ">
+
+                        @Html.ActionLink("Kategori Ekle", "CreateCategory", null, new { @class = "btn btn-success pull-right" })
+                    </div>
+                </div>
+            </header>
             <table class="table table-striped table-advance table-hover">
                 <thead>
                     <tr>
-                        <th><i class="icon-bullhorn"></i> CategoryName</th>
-                        <th class="hidden-phone"><i class="icon-question-sign"></i> Description</th>
-                        <th><i class="icon-bookmark"></i> Profit</th>
-                        <th><i class=" icon-edit"></i> Status</th>
+                        <th>Kategori Adı</th>
+                        <th>Description</th>
+                        <th>Toplam Ürün</th>
+                        <th>Durum</th>
                         <th></th>
-                       
                     </tr>
                 </thead>
                 <tbody>
                     @foreach (var category in Model)
                     {
-                    <tr>
+                        <tr>
+                            <td>
+                                @Html.ActionLink(category.CategoryName, "ProductsCategory", new { id = category.ID })
+                            </td>
+                            <td>
+                                @category.Description
+                            </td>
+                            <td>
+                            </td>
+                            <td>
 
-                        <td><a href="#">@category.CategoryName</a></td>
-                        <td class="hidden-phone">@category.Description</td>
-                        <td>@category.CategoryName </td>
-                        <td><span class="label label-info label-mini">@category.Status</span></td>
-                        <td>
-                            <button class="btn btn-success btn-xs"><i class="icon-ok"></i></button>
-                            <button class="btn btn-primary btn-xs"><i class="icon-pencil">@Html.ActionLink("Update", "UpdateCategory", new { id = category.ID })</i></button>
-                            <button class="btn btn-danger btn-xs"><i class="icon-trash "></i>@Html.ActionLink("Delete", "DeleteCategory", new { id = category.ID })</button>
-                        </td>
-                        
-                       
-                      
-
-                    </tr>
-                     }
-
-                    </tbody>
+                                @switch (category.Status)
+                                {
+                                    case Core.Enum.Status.None:
+                                        <span class="label label-info label-mini">@category.Status.ToString()</span>
+                                        break;
+                                    case Core.Enum.Status.Active:
+                                        <span class="label label-success label-mini">@category.Status.ToString()</span>
+                                        break;
+                                    case Core.Enum.Status.Deleted:
+                                        <span class="label label-danger label-mini">@category.Status.ToString()</span>
+                                        break;
+                                    case Core.Enum.Status.Updated:
+                                        <span class="label label-warning label-mini">@category.Status.ToString()</span>
+                                        break;
+                                }
+                            </td>
+                            <td>
+                                <a href="/Admin/Category/UpdateCategory/@category.ID" class="btn btn-primary btn-xs">
+                                    <i class="icon-pencil"></i>
+                                </a>
+                                <a href="/Admin/Category/DeleteCategory/@category.ID" class="btn btn-danger btn-xs">
+                                    <i class="icon-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
             </table>
         </section>
     </div>
-</div>
+ </div>

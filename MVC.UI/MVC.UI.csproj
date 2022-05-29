@@ -1616,6 +1616,7 @@
     <Content Include="Content\grids.html" />
     <Content Include="Content\horizontal_menu.html" />
     <Content Include="Content\image_cropping.html" />
+    <Content Include="Content\img\1_org_zoom.jpg" />
     <Content Include="Content\img\404_icon.png" />
     <Content Include="Content\img\500_icon.png" />
     <Content Include="Content\img\arrow-up.png" />
@@ -1748,6 +1749,7 @@
     <Content Include="Content\registration.html" />
     <Content Include="Content\responsive_table.html" />
     <Content Include="Content\search_result.html" />
+    <Content Include="Content\Site.css" />
     <Content Include="Content\slider.html" />
     <Content Include="Content\todo_list.html" />
     <Content Include="Content\widget.html" />
@@ -1763,10 +1765,16 @@
     <Compile Include="Areas\Admin\Controllers\ProductController.cs" />
     <Compile Include="Areas\Admin\Controllers\SubCategoryController.cs" />
     <Compile Include="Areas\Admin\Controllers\SupplierController.cs" />
-    <Compile Include="Areas\Admin\Models\CategoryVM.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ProductController.cs" />
+    <Compile Include="CustomFilter\AuthAdmin.cs" />
+    <Compile Include="CustomFilter\AuthMember.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\AppUserVM.cs" />
+    <Compile Include="Models\Cart.cs" />
+    <Compile Include="Models\CartItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -1936,11 +1944,20 @@
     <Content Include="Areas\Admin\Views\SubCategory\SubCategoryList.cshtml" />
     <Content Include="Areas\Admin\Views\SubCategory\CreateSubCategory.cshtml" />
     <Content Include="Areas\Admin\Views\SubCategory\UpdateSubCategory.cshtml" />
-    <Content Include="Areas\Admin\Views\Product\ProductList.cshtml" />
-    <Content Include="Areas\Admin\Views\Product\CreateProducrt.cshtml" />
-    <Content Include="Areas\Admin\Views\Product\UpdateProduct.cshtml" />
+    <Content Include="Areas\Admin\Views\Product\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Product\Create.cshtml" />
+    <Content Include="Content\img\v2-93303-5_large.webp" />
     <None Include="packages.config" />
+    <Content Include="Views\Home\Login.cshtml" />
+    <Content Include="Views\Home\Register.cshtml" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Home\Pending.cshtml" />
+    <Content Include="Views\Home\index.cshtml" />
+    <Content Include="Views\Product\Index.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Product\MyCart.cshtml" />
+    <Content Include="Views\Product\CompleteCart.cshtml" />
+    <Content Include="Views\Product\AddToCart.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -1952,10 +1969,12 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Content\assets\jquery-file-upload\server\php\files\thumbnail\" />
-    <Folder Include="Controllers\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{77B03984-E047-4110-90E8-A095350B01B9}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Core\Core.csproj">
       <Project>{ad820fcb-33e1-4c80-869b-35977bed737b}</Project>
       <Name>Core</Name>

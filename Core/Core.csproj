@@ -52,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EntityRepository.cs" />
+    <Compile Include="Enum\AppUserRole.cs" />
     <Compile Include="Enum\Status.cs" />
     <Compile Include="IEntity.cs" />
     <Compile Include="Map\CoreMap.cs" />

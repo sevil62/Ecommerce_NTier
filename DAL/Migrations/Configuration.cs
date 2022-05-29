@@ -174,6 +174,18 @@
                 }
             }
 
+            //AppUser
+            List<AppUser> userList = new List<AppUser>()
+            {
+                new AppUser{ID=Guid.NewGuid(),Username="admin",Password="1234",Email="admin@admin.com"}
+            };
+
+            foreach (var user in userList)
+            {
+                context.AppUsers.Add(user);
+                context.SaveChanges();
+            }
         }
     }
+    
 }

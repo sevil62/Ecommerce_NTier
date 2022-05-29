@@ -52,10 +52,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Context\EcommerceContext.cs" />
+    <Compile Include="Entity\AppUser.cs" />
     <Compile Include="Entity\Category.cs" />
     <Compile Include="Entity\Product.cs" />
     <Compile Include="Entity\SubCategory.cs" />
     <Compile Include="Entity\Supplier.cs" />
+    <Compile Include="Map\AppUserMap.cs" />
     <Compile Include="Map\CategoryMap.cs" />
     <Compile Include="Map\ProductMap.cs" />
     <Compile Include="Map\SubCategoryMap.cs" />

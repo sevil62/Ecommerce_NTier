@@ -52,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Base\BaseService.cs" />
+    <Compile Include="Conc\AppUserService.cs" />
     <Compile Include="Conc\CategoryService.cs" />
     <Compile Include="Conc\ProductService.cs" />
     <Compile Include="Conc\SubCategoryService.cs" />

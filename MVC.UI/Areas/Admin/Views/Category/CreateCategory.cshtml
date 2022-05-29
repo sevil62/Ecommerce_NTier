@@ -1,29 +1,29 @@
-﻿@model DAL.Entity.Category
+﻿@model Category
 @{
     ViewBag.Title = "CreateCategory";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
 
-<div class="card-body">
-    @using (Html.BeginForm("CreateCategory", "Category", FormMethod.Post))
-    {
-        <div>
-            <label>CategoryName</label>
-            @Html.TextBoxFor(x => x.CategoryName, new { @class = "form-control" })
+<div class="col-lg-6">
+    <section class="panel">
+        <header class="panel-heading">
+            Kategori Ekle
+        </header>
+        <div class="panel-body">
+            <form role="form" method="post">
+                <div class="form-group">
+                    <label>Kategori Ad</label>
+                    @Html.TextBoxFor(x => x.CategoryName, new { @class = "form-control" })
+                </div>
+                <div class="form-group">
+                    <label>Açıklama</label>
+                    @Html.TextBoxFor(x => x.Description, new { @class = "form-control" })
+                </div>
+                <button type="submit" class="btn btn-info">Kaydet</button>
+            </form>
 
         </div>
-        <br />
-        <div>
-            <label>Description</label>
-            @Html.TextBoxFor(x => x.Description, new { @class = "form-control" })
-
-        </div>
-
-        <br />
-        <button type="submit" class="btn btn-danger">AddCategory</button>
-
-    }
-
+    </section>
 </div>
 

@@ -19,6 +19,7 @@ namespace DAL.Context
         public DbSet<Category> Categories { get; set; }
         public DbSet<SubCategory> SubCategories { get; set; }
         public DbSet<Supplier> Suppliers { get; set; }
+        public DbSet<AppUser> AppUsers { get; set; }
       
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -26,6 +27,7 @@ namespace DAL.Context
             modelBuilder.Configurations.Add(new ProductMap());
             modelBuilder.Configurations.Add(new SupplierMap());
             modelBuilder.Configurations.Add(new SubCategoryMap());
+            modelBuilder.Configurations.Add(new AppUserMap());
            
         }
     }

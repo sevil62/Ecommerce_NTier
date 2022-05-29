@@ -1,0 +1,221 @@
+﻿@model List<DAL.Entity.Product>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="Mosaddek">
+    <meta name="keyword" content="FlatLab, Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
+    <link rel="shortcut icon" href="img/favicon.png">
+
+    <title>Product list</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="~/Content/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/Content/css/bootstrap-reset.css" rel="stylesheet">
+    <!--external css-->
+    <link href="~/Content/assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
+    <link href="~/Content/assets/jquery-ui/jquery-ui-1.10.1.custom.min.css" rel="stylesheet" />
+    <!-- Custom styles for this template -->
+    <link href="~/Content/css/style.css" rel="stylesheet">
+    <link href="~/Content/css/style-responsive.css" rel="stylesheet" />
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 tooltipss and media queries -->
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.js"></script>
+      <script src="js/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+
+    <section id="main-content">
+        <section class="wrapper">
+            <!-- page start-->
+            <div class="row">
+                <div class="col-md-3">
+                    <section class="panel">
+                        <div class="panel-body">
+                            <input type="text" placeholder="Keyword Search" class="form-control">
+                        </div>
+                    </section>
+                    <section class="panel">
+                        <header class="panel-heading">
+                            Category
+                        </header>
+                        <div class="panel-body">
+                            @foreach (var product in Model)
+                            {
+                            <ul>
+                                <li><a href="#"><i class=" icon-angle-right"></i> @product.SubCategory.Category.CategoryName  </a></li>
+                            </ul>
+
+                            }
+
+                            </div>
+                    </section>
+                    <section class="panel">
+                        <header class="panel-heading">
+                            Price Range
+                        </header>
+                        <div class="panel-body sliders">
+                            <div id="slider-range" class="slider ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all" aria-disabled="false"><div class="ui-slider-range ui-widget-header ui-corner-all" style="left: 15%; width: 45%;"></div><a class="ui-slider-handle ui-state-default ui-corner-all" href="#" style="left: 15%;"></a><a class="ui-slider-handle ui-state-default ui-corner-all" href="#" style="left: 60%;"></a></div>
+                            <div class="slider-info">
+                                <span id="slider-range-amount">$75 - $300</span>
+                            </div>
+                        </div>
+                    </section>
+                    <section class="panel">
+                        <header class="panel-heading">
+                            Best Seller
+                        </header>
+                        <div class="panel-body">
+                            <div class="best-seller">
+                                <article class="media">
+                                    <a class="pull-left thumb p-thumb">
+                                        
+                                        <img src="~/Content/img/511870484_.webp" />
+                                    </a>
+                                    <div class="media-body">
+                                        <a href="#" class=" p-head">Item One Tittle</a>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                                    </div>
+                                </article>
+                                <article class="media">
+                                    <a class="pull-left thumb p-thumb">
+                                       
+                                        <img src="~/Content/img/1_org_zoom.jpg" />
+                                    </a>
+                                    <div class="media-body">
+                                        <a href="#" class=" p-head">Item Two Tittle</a>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                                    </div>
+                                </article>
+                                <article class="media">
+                                    <a class="pull-left thumb p-thumb">
+                                       
+                                        <img src="~/Content/img/v2-93303-5_large.webp" />
+
+
+                                    </a>
+                                    <div class="media-body">
+                                        <a href="#" class=" p-head">Item Three Tittle</a>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                                    </div>
+                                </article>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+                <div class="col-md-9">
+                    <section class="panel">
+                        <div class="panel-body">
+                            <div class="pro-sort">
+                                <label class="pro-lab">Sort By</label>
+                                <select class="styled hasCustomSelect" style="appearance: menulist-button; width: 126px; position: absolute; opacity: 0; height: 39px; font-size: 12px;">
+                                    <option>Default Sorting</option>
+                                    <option>Popularity</option>
+                                    <option>Average Rating</option>
+                                    <option>Newness</option>
+                                    <option>Price Low to High</option>
+                                    <option>Price High to Low</option>
+                                </select><span class="customSelect styled" style="display: inline-block;"><span class="customSelectInner" style="width: 104px; display: inline-block;">Default Sorting</span></span>
+                            </div>
+                            <div class="pro-sort">
+                                <label class="pro-lab">Show</label>
+                                <select class="styled hasCustomSelect" style="appearance: menulist-button; width: 119px; position: absolute; opacity: 0; height: 39px; font-size: 12px;">
+                                    <option>Result Per Page</option>
+                                    <option>2 Per Page</option>
+                                    <option>4 Per Page</option>
+                                    <option>6 Per Page</option>
+                                    <option>8 Per Page</option>
+                                    <option>10 Per Page</option>
+                                </select><span class="customSelect styled" style="display: inline-block;"><span class="customSelectInner" style="width: 97px; display: inline-block;">Result Per Page</span></span>
+                            </div>
+
+                            <div class="pull-right">
+                                <ul class="pagination pagination-sm pro-page-list">
+
+                                    <li><a href="#">1</a></li>
+                                    <li><a href="#">2</a></li>
+                                    <li><a href="#">3</a></li>
+                                    <li><a href="#">»</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+
+                    <div class="row product-list">
+                        @foreach (var product in Model)
+                        {
+                        <div class="col-md-4">
+                            <section class="panel">
+                                <div class="pro-img-box">
+                                    <img src="~/Content/img/v2-93303-5_large.webp" />
+                                    <a href="#" class="adtocart">
+
+                                        <i class="icon-shopping-cart"></i>
+                                    </a>
+                                </div>
+
+
+
+                                <div class="panel-body text-center">
+                                    <h4>
+                                        <a href="#" class="pro-title">
+                                            @product.ProductName
+                                        </a>
+                                    </h4>
+                                    <p class="price">@product.UnitPrice</p>
+                                </div>
+                               @Html.ActionLink("Sepete Ekle", "AddToCart", new { id = product.ID }, new { @class = "btn btn-outline-dark mt-auto" })
+
+                            </section>
+                            
+                        </div>
+                           
+
+
+                        }
+                    </div>
+                </div>
+             </div>
+                           
+           
+            <!-- page end-->
+        </section>
+    </section>
+
+    <!-- js placed at the end of the document so the pages load faster -->
+    <script src="~/Content/js/jquery.js"></script>
+    <script src="~/Content/js/bootstrap.min.js"></script>
+    <script class="include" type="text/javascript" src="~/Content/js/jquery.dcjqaccordion.2.7.js"></script>
+    <script src="~/Content/js/jquery.scrollTo.min.js"></script>
+    <script src="~/Content/js/jquery.nicescroll.js" type="text/javascript"></script>
+    <script src="~/Content/assets/jquery-ui/jquery-ui-1.10.1.custom.min.js" type="text/javascript"></script>
+    <script src="~/Content/js/jquery.ui.touch-punch.min.js"></script>
+    <script src="~/Content/js/jquery.customSelect.min.js"></script>
+
+    <script src="~/Content/js/respond.min.js"></script>
+
+
+    <!--common script for all pages-->
+    <script src="~/Content/js/common-scripts.js"></script>
+
+    <script src="~/Content/js/sliders.js" type="text/javascript"></script>
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            $(function () {
+                $('select.styled').customSelect();
+            });
+        });
+
+
+    </script>
+
+</body>
+</html>

@@ -36,5 +36,8 @@ namespace Core.Service
 
         //Remove Force
         string RemoveForce(T model);
+
+        //Find
+        T Find(int id);
     }
 }

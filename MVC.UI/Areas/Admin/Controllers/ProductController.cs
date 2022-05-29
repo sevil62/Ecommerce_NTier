@@ -1,4 +1,5 @@
-﻿using DAL.Entity;
+﻿using Common;
+using DAL.Entity;
 using Service.Conc;
 using System;
 using System.Collections.Generic;
@@ -11,40 +12,89 @@ namespace MVC.UI.Areas.Admin.Controllers
     public class ProductController : Controller
     {
         ProductService _prep=new ProductService();
+        SubCategoryService _sbrep=new SubCategoryService();
+        SupplierService _srep=new SupplierService();
         // GET: Admin/Product
-        public ActionResult ProductList()
+        public ActionResult Index()
         {
             return View(_prep.GetList());
         }
 
-        public ActionResult CreateProducrt()
-        {
-            return View();
-        }
-        [HttpPost]
-        public ActionResult CreateProduct(Product product)
-        {
-            _prep.Add(product);
-            return RedirectToAction("ProductList");
-        }
-        public ActionResult UpdateProduct(int? id)
+        // GET: Admin/Product/Details/5
+        public ActionResult Details(int id)
         {
             return View();
         }
 
-
-        [HttpPost]
-        public ActionResult UpdateProduct(Product product)
+        // GET: Admin/Product/Create
+        public ActionResult Create()
         {
-
-            _prep.Update(product);
-            return RedirectToAction("ProductList");
+            ViewBag.SubCategories = _sbrep.GetDefault(x => x.Status == Core.Enum.Status.Active).ToList();
+            ViewBag.Suppliers = _srep.GetDefault(x => x.Status == Core.Enum.Status.Active).ToList();
+            return View();
         }
 
-        public ActionResult DeleteCategory(Guid id)
+        // POST: Admin/Product/Create
+        [HttpPost]
+        public ActionResult Create(Product product, HttpPostedFileBase fileImage)
         {
-            _prep.Delete(id);
-            return RedirectToAction("ProductList");
+            try
+            {
+                product.ProductImagePath = ImageUpLoad.UploadImage("~/Content/image/product/", fileImage);
+                var result = _prep.Add(product);
+                TempData["info"] = result;
+
+                return RedirectToAction("Index");
+            }
+            catch (Exception ex)
+            {
+                TempData["error"] = ex.Message;
+                return View();
+            }
+        }
+
+        // GET: Admin/Product/Edit/5
+        public ActionResult Edit(int id)
+        {
+            return View();
+        }
+
+        // POST: Admin/Product/Edit/5
+        [HttpPost]
+        public ActionResult Edit(int id, FormCollection collection)
+        {
+            try
+            {
+                // TODO: Add update logic here
+
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+        // GET: Admin/Product/Delete/5
+        public ActionResult Delete(int id)
+        {
+            return View();
+        }
+
+        // POST: Admin/Product/Delete/5
+        [HttpPost]
+        public ActionResult Delete(int id, FormCollection collection)
+        {
+            try
+            {
+                // TODO: Add delete logic here
+
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
         }
     }
 }
